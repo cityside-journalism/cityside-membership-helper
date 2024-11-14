@@ -31,11 +31,23 @@ It paginates, fetching a batch of 100 each time, until it reaches the end of the
 
 """
 
+newsletter_options = {
+    "Major Donors": major_donors,
+    "Cityside Main Audience": cityside_main_audience,
+    "Cityside Master List": cityside_master_list,
+    "May 24 Major Donors": may24_major_donors,
+    "Oaklandside Newsletter": oaklandside_newsletter,
+    "Berkeleyside Newsletter": berkeleyside_newsletter,
+    "Richmondside Newsletter": richmondside_newsletter
+}
 
 
 
-st.title("Welcome to My Streamlit App")
+st.title("Citysie membership manager")
 st.write("Now it has imported packages AND secrets secretley stored!")
+
+st.subheader("Newsletter")
+selected_newsletter = st.selectbox("Choose a newsletter:", list(newsletter_options.keys()))
 
 
 #bside_subscribers = members.get_list_subscribers(berkeleyside_newsletter)
