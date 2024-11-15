@@ -49,6 +49,10 @@ st.write("Now it has imported packages AND secrets secretley stored!")
 st.subheader("Newsletter")
 selected_newsletter = st.selectbox("Choose a newsletter:", list(newsletter_options.keys()))
 
+if st.button("Submit"):
+    # Placeholder action
+    st.write(f"Button works! You selected: {selected_newsletter}")
+
 
 #bside_subscribers = members.get_list_subscribers(berkeleyside_newsletter)
 #print(len(bside_subscribers))
