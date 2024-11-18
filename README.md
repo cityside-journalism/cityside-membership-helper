@@ -1,6 +1,6 @@
 ## Cityside Membership Helper
 
-#### Setup:
+## Setup:
 
 Run the virtual enviroment: 
 
@@ -8,3 +8,11 @@ Run the virtual enviroment:
 
 Run the app:
 - $ streamlit run app.py
+
+## Setting up Secrets
+Create a `.streamlit/secrets.toml` file with the following structure:
+
+```toml
+[general]
+MC_KEY = "your_mailchimp_api_key"
+SERVER_PREFIX = "your_server_prefix"
