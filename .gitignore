@@ -3,3 +3,6 @@
 
 # Ignore secrets file
 .streamlit/secrets.toml
+
+#ignore output
+output/

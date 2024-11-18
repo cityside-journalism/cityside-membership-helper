@@ -1,16 +1,19 @@
 import streamlit as st
 import openai
-import json
-import os
-import requests
-import pandas as pd
-import mailchimp_marketing as MailchimpMarketing
-from mailchimp_marketing.api_client import ApiClientError
-#from google.colab import userdata
-import json
-import urllib.parse
+# import json
+# import os
+# import pandas as pd
+# import mailchimp_marketing as MailchimpMarketing
+# from mailchimp_marketing.api_client import ApiClientError
+# #from google.colab import userdata
+# import urllib.parse
+from components import *
 from data.newsletters import *
 import data.members as members
+from utils import *
+from datetime import datetime
+from pages import fetch_data, explore_data  # Import your pages
+
 
 
 
@@ -24,36 +27,27 @@ HEADERS = {
     'Authorization': f'Bearer {MC_KEY}'
     }
 
-"""
-GET LIST SUBSCRIBERS:
-get_list_subscribers only fetches some data from MC api, specified in fields. It also only fetches those who are subscribed.
-It paginates, fetching a batch of 100 each time, until it reaches the end of the list. Pass in a list ID from above.
+ 
 
-"""
+# st.sidebar.title("Navigation")
+# page = st.sidebar.selectbox("Go to", ["Fetch Data", "Explore Data"])
 
-newsletter_options = {
-    "Major Donors": major_donors,
-    "Cityside Main Audience": cityside_main_audience,
-    "Cityside Master List": cityside_master_list,
-    "May 24 Major Donors": may24_major_donors,
-    "Oaklandside Newsletter": oaklandside_newsletter,
-    "Berkeleyside Newsletter": berkeleyside_newsletter,
-    "Richmondside Newsletter": richmondside_newsletter
-}
+# # Load the selected page
+# if page == "Fetch Data":
+#     fetch_data  # Fetch Data page functionality
+# elif page == "Explore Data":
+#     explore_data  # Explore Data page functionality
 
 
+st.title("Cityside Membership Helper")
+ 
+ 
+# selected_newsletter = st.selectbox("Choose a newsletter:", list(newsletter_options.keys()))
 
-st.title("Citysie membership manager")
-st.write("Now it has imported packages AND secrets secretley stored!")
+# if st.button("Get Newsletter Activity"):
+#     get_newsletter_activity(selected_newsletter, store_as_json)
 
-st.subheader("Newsletter")
-selected_newsletter = st.selectbox("Choose a newsletter:", list(newsletter_options.keys()))
+# if get_list_members_button(selected_newsletter):
+#     st.write(f"Fetching members for {selected_newsletter}")
 
-if st.button("Submit"):
-    # Placeholder action
-    st.write(f"Button works! You selected: {selected_newsletter}")
-
-
-#bside_subscribers = members.get_list_subscribers(berkeleyside_newsletter)
-#print(len(bside_subscribers))
-#st.write(bside_subscribers)
+st.markdown("<hr style='border: 1px solid #ccc; margin: 20px 0;'>", unsafe_allow_html=True)
