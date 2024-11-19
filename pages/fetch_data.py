@@ -2,7 +2,7 @@ import streamlit as st
 from components import get_newsletter_activity, get_list_members_button
 from data.newsletters import newsletter_options
 
-
+st.set_page_config(page_title="Fetch Data", page_icon="📊")
 st.title("Fetch Mailchimp Data")
 st.subheader("Pull data from the Mailchimp API")
 

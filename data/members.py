@@ -39,7 +39,7 @@ def get_list_subscribers(list_id, list_name):
 
         # Load existing subscriber IDs
         existing_ids = get_existing_subscriber_ids(file_path)
-        
+
         # Prepare to collect new subscribers
         response_list = []
         offset = 0
@@ -84,9 +84,7 @@ def get_list_subscribers(list_id, list_name):
             # Update progress
             progress = min((offset + count) / total_count, 1.0)
             progress_bar.progress(progress)
-
-            # Print progress
-            print(f"Fetched {len(new_members)} new members in this batch, total members fetched so far: {total_members}, current offset: {offset}")
+            print("Progress: " + progress)
 
             # Check if we've retrieved all members
             if len(response["members"]) < count:
@@ -94,34 +92,21 @@ def get_list_subscribers(list_id, list_name):
 
             offset += count  # Move to the next batch of members
 
-        progress_bar.empty()  # Clear the progress bar after completion
-        st.write(f"Finished fetching {total_members} new members.")
-        print(f"Finished fetching {total_members} new members.")
+        progress_bar.empty()
 
-        # Only save if there are new members
+        # Save data using store_as_json
         if response_list:
-            # Use store_as_json to save with metadata and filename handled in utils
-             # Prepare extra metadata
-            extra_metadata = {"list_id": list_id}
-
-            success, old_metadata, new_metadata = store_as_json(response_list, list_name, extra_metadata)
-            if success:
-                st.success(f"Successfully saved {total_members} new members to {list_name}.json")
-            else:
-                st.error("Failed to save new members.")
+            success, old_metadata, new_metadata = store_as_json(response_list, list_name, {"list_id": list_id})
+            return success, old_metadata, new_metadata
         else:
-            st.info("No new members to fetch and save.")
-
-        return response_list
+            return False, {}, {}
 
     except ApiClientError as error:
-        print("Error: {}".format(error.text))
-        return None
+        print(f"API Client Error: {error.text}")
+        return False, {}, {}
     except Exception as e:
-        # General error handling for unexpected issues
         print(f"An error occurred: {e}")
-        st.error("An error occurred while fetching data.")
-        return None
+        return False, {}, {}
 
 
 def get_list_activities(list_id):

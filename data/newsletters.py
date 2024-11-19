@@ -7,10 +7,10 @@ berkeleyside_newsletter = 'aad4b5ee64'
 richmondside_newsletter = '7867c6e5a8'
 
 newsletter_options = {
-    "Major Donors": major_donors,
-    "Cityside Main Audience": cityside_main_audience,
-    "Cityside Master List": cityside_master_list,
-    "May 24 Major Donors": may24_major_donors,
+   # "Major Donors": major_donors,
+  #  "Cityside Main Audience": cityside_main_audience,
+   # "Cityside Master List": cityside_master_list,
+  #  "May 24 Major Donors": may24_major_donors,
     "Oaklandside Newsletter": oaklandside_newsletter,
     "Berkeleyside Newsletter": berkeleyside_newsletter,
     "Richmondside Newsletter": richmondside_newsletter
