@@ -5,17 +5,12 @@ import json
 from utils import extract_slug_from_url, get_post_details
 from datetime import datetime
 
+st.title("Get Member Feed")
 
-st.title("Get Member Activity")
-
-
-
-
-st.markdown("Retrieve and display activity details for specific members.")
+st.markdown("Retrieve and display activity feed for specific members.")
 
 left_column, right_column = st.columns(2)
 left_column, right_column = st.columns([3, 2])
-
 
 with left_column:
     st.subheader("Select a Subscriber")
@@ -23,7 +18,7 @@ with left_column:
     subscriber_id, selected_file = subscriber_activity_component()
 
 with right_column:
-
+    st.subheader("See something here")
     if subscriber_id and selected_file:
         st.success(f"Selected Subscriber: {subscriber_id} from List: {selected_file}")
 
@@ -40,7 +35,7 @@ with right_column:
         # Fetch activity details if list ID is found
         if list_id:
             #st.info(f"Fetching activity for subscriber {subscriber_id}...")
-            activity = members.get_member_activity(list_id, subscriber_id)
+            activity = members.get_member_feed(list_id, subscriber_id)
 
             # Display clicks with shorter date and slug
             if activity:

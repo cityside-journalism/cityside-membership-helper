@@ -153,9 +153,29 @@ def get_member_activity(list_id, subscriber):
       "server": SERVER_PREFIX
     })
 
-    response = client.lists.get_list_member_activity(list_id, subscriber)
+    query_parameters = {
+        "count": 100,  # Limit the number of activities to fetch
+        "activity_filters": "click"
+    }
+
+    response = client.lists.get_list_member_activity(list_id, subscriber,count=100)
     #print(response)
   except ApiClientError as error:
     print("Error: {}".format(error.text))
 
   return response
+
+def get_member_feed(list_id, subscriber):
+    
+    try:
+        client = MailchimpMarketing.Client()
+        client.set_config({
+          "api_key": API_KEY,
+          "server": SERVER_PREFIX
+        })
+
+        response = client.lists.get_list_member_activity_feed(list_id, subscriber)
+        print(response)
+    except ApiClientError as error:
+        print("Error: {}".format(error.text))
+    

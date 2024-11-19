@@ -3,3 +3,4 @@ mailchimp-marketing
 requests
 pandas
 mailchimp3
+supabase

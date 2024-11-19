@@ -110,11 +110,13 @@ def subscriber_activity_component(output_dir="output"):
         st.info("No subscribers on this page.")
         return None, None
 
-    # Step 3: Display buttons for each subscriber
-    for _, subscriber in paginated_df.iterrows():
+    #Step 3: Display buttons for each subscriber
+    for idx, subscriber in paginated_df.iterrows():
         subscriber_id = subscriber["id"]
         click_rate = subscriber["stats.avg_click_rate"]
-        if st.button(f"Select Subscriber: {subscriber_id} (Click Rate: {click_rate:.2%})"):
+        if st.button(f" {idx}: (Click Rate: {click_rate:.2%})"):
             return subscriber_id, selected_file
+        
+   
 
     return None, None

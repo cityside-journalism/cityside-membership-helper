@@ -2,6 +2,12 @@
 
 ## Setup:
 
+### Add Supabase and Streamlit
+```bash
+$ pip install supabase streamlit
+
+```
+
 ### Setting up Secrets
 Create a `.streamlit/secrets.toml` file with the following structure:
 
@@ -9,6 +15,12 @@ Create a `.streamlit/secrets.toml` file with the following structure:
 [general]
 MC_KEY = "your_mailchimp_api_key"
 SERVER_PREFIX = "your_server_prefix"
+```
+
+### Add Supabase
+```bash
+$ pip install supabase
+
 ```
 
 ## Run the virtual enviroment: 
