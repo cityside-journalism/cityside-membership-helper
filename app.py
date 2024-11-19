@@ -40,7 +40,7 @@ HEADERS = {
 
 
 st.title("Cityside Membership Helper")
- 
+ st.write("Now with supabase!")
  
 # selected_newsletter = st.selectbox("Choose a newsletter:", list(newsletter_options.keys()))
 
