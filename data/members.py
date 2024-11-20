@@ -24,6 +24,7 @@ def get_existing_subscriber_ids(file_path):
     return set()
 
 def get_list_subscribers(list_id, list_name):
+    print("GETTING LIST SUBSCRIBERS>>>")
     try:
         MC_KEY = st.secrets["MC_KEY"]
         SERVER_PREFIX = 'us2'
@@ -71,6 +72,7 @@ def get_list_subscribers(list_id, list_name):
                 fields=fields,
                 status='subscribed'
             )
+             
 
             # Filter out existing members
             new_members = [
@@ -84,11 +86,13 @@ def get_list_subscribers(list_id, list_name):
             # Update progress
             progress = min((offset + count) / total_count, 1.0)
             progress_bar.progress(progress)
-            print("Progress: " + progress)
+            print(f"Progress: {progress}")
 
             # Check if we've retrieved all members
             if len(response["members"]) < count:
+                 
                 break  # No more members to fetch
+
 
             offset += count  # Move to the next batch of members
 

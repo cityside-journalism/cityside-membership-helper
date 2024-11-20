@@ -120,3 +120,39 @@ def subscriber_activity_component(output_dir="output"):
    
 
     return None, None
+
+
+def sync_subscribers_component(output_dir="output"):
+    """
+    Component to select a JSON file and trigger syncing subscribers.
+    Args:
+        output_dir (str): The directory containing JSON files with subscriber data.
+
+    Returns:
+        dict: Selected file data, or None if no file is selected.
+    """
+    st.subheader("Sync Subscribers")
+
+    # Step 1: Select a JSON file
+    files = [f for f in os.listdir(output_dir) if f.endswith(".json")]
+    if not files:
+        st.warning("No JSON files found in the output directory.")
+        return None
+
+    selected_file = st.selectbox("Select a subscriber list:", files)
+    if not selected_file:
+        return None
+
+    # Load the selected file
+    file_path = os.path.join(output_dir, selected_file)
+    try:
+        with open(file_path, "r") as f:
+            file_data = json.load(f)
+    except Exception as e:
+        st.error(f"Error loading {selected_file}: {e}")
+        return None
+
+    if st.button("Sync Subscribers"):
+        return file_data
+
+    return None
